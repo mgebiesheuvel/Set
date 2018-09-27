@@ -19,6 +19,6 @@ class ThemeManager {
     init() {
         let themeArray = Array(themes.values)
         let randomThemeIndex = themeArray.index(themeArray.startIndex, offsetBy: themeArray.count.arc4random)
-        currentTheme = Array(themes.values)[randomThemeIndex]
+        currentTheme = themeArray[randomThemeIndex]
     }
 }
