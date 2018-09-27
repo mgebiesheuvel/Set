@@ -17,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9BBD80F0215D497800F86931 /* TestSomething.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSomething.swift; sourceTree = "<group>"; };
 		9BC9078E2146DDDB00BBB034 /* Concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC907912146DDDB00BBB034 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BC907932146DDDB00BBB034 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +42,6 @@
 		9BC907852146DDDB00BBB034 = {
 			isa = PBXGroup;
 			children = (
-				9BBD80F0215D497800F86931 /* TestSomething.swift */,
 				9BC907902146DDDB00BBB034 /* Concentration */,
 				9BC9078F2146DDDB00BBB034 /* Products */,
 			);
