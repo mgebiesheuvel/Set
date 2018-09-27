@@ -53,6 +53,14 @@
                BlueprintName = "ConcentrationUITests"
                ReferencedContainer = "container:Concentration.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ConcentrationPerformanceTests">
+               </Test>
+               <Test
+                  Identifier = "ConcentrationUITests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">
