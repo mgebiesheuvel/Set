@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+    private var themeManager = ThemeManager()
    
     var numberOfPairsOfCards: Int {
         return (cardButtons.count + 1) / 2
@@ -38,10 +39,16 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        for btn in cardButtons {
+            btn.backgroundColor = themeManager.currentTheme.color
+        }
+    }
+    
     private func updateFlipCountLabel() {
         flipCountLabel.attributedText = NSAttributedString(string: "Flips: \(flipCount)", attributes: [
             .strokeWidth: 5.0,
-            .strokeColor: #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)
+            .strokeColor: themeManager.currentTheme.color
         ])
     }
     
@@ -59,18 +66,16 @@ class ViewController: UIViewController {
                     button.setTitle("", for: UIControl.State.normal)
                 }
                 
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1450931079) : #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)
+                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1450931079) : themeManager.currentTheme.color
             }
         }
     }
     
-    private var emojiChoices = "😀😅😉😎🤓🤪🙄🤔😨😴😬😂"
     private var emoji = [Card: String]()
     
     private func emoji(for card: Card) -> String {
-        if emoji[card] == nil, emojiChoices.count > 0 {
-            let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4random)
-            emoji[card] = String(emojiChoices.remove(at: randomStringIndex))
+        if emoji[card] == nil, themeManager.currentTheme.emojiChoices.count > 0 {
+            emoji[card] = themeManager.currentTheme.getRandomEmoji()
         }
         return emoji[card] ?? "?"
     }

@@ -14,6 +14,11 @@
 		9BC9079C2146DDDD00BBB034 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9079A2146DDDD00BBB034 /* LaunchScreen.storyboard */; };
 		9BC907A52146DF4B00BBB034 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC907A42146DF4B00BBB034 /* Concentration.swift */; };
 		9BC907A72146DF5600BBB034 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC907A62146DF5600BBB034 /* Card.swift */; };
+		9BE7768A215D6D4400037F54 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE77689215D6D4400037F54 /* ThemeManager.swift */; };
+		9BE7768C215D6D8100037F54 /* SmileyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7768B215D6D8100037F54 /* SmileyTheme.swift */; };
+		9BE7768E215D6D9F00037F54 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7768D215D6D9F00037F54 /* ThemeProtocol.swift */; };
+		9BE77691215D702700037F54 /* AnimalTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE77690215D702700037F54 /* AnimalTheme.swift */; };
+		9BE77695215D880700037F54 /* FlagTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE77694215D880700037F54 /* FlagTheme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		9BC9079D2146DDDD00BBB034 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC907A42146DF4B00BBB034 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
 		9BC907A62146DF5600BBB034 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		9BE77689215D6D4400037F54 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		9BE7768B215D6D8100037F54 /* SmileyTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileyTheme.swift; sourceTree = "<group>"; };
+		9BE7768D215D6D9F00037F54 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
+		9BE77690215D702700037F54 /* AnimalTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalTheme.swift; sourceTree = "<group>"; };
+		9BE77694215D880700037F54 /* FlagTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagTheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +76,21 @@
 				9BC907952146DDDB00BBB034 /* Main.storyboard */,
 				9BC9079D2146DDDD00BBB034 /* Info.plist */,
 				9BC907A62146DF5600BBB034 /* Card.swift */,
+				9BE7768F215D6DBE00037F54 /* Themes */,
 			);
 			path = Concentration;
+			sourceTree = "<group>";
+		};
+		9BE7768F215D6DBE00037F54 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				9BE77689215D6D4400037F54 /* ThemeManager.swift */,
+				9BE7768B215D6D8100037F54 /* SmileyTheme.swift */,
+				9BE7768D215D6D9F00037F54 /* ThemeProtocol.swift */,
+				9BE77690215D702700037F54 /* AnimalTheme.swift */,
+				9BE77694215D880700037F54 /* FlagTheme.swift */,
+			);
+			path = Themes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,9 +166,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BC907942146DDDB00BBB034 /* ViewController.swift in Sources */,
+				9BE77691215D702700037F54 /* AnimalTheme.swift in Sources */,
 				9BC907922146DDDB00BBB034 /* AppDelegate.swift in Sources */,
+				9BE7768A215D6D4400037F54 /* ThemeManager.swift in Sources */,
+				9BE7768E215D6D9F00037F54 /* ThemeProtocol.swift in Sources */,
 				9BC907A52146DF4B00BBB034 /* Concentration.swift in Sources */,
+				9BE7768C215D6D8100037F54 /* SmileyTheme.swift in Sources */,
 				9BC907A72146DF5600BBB034 /* Card.swift in Sources */,
+				9BE77695215D880700037F54 /* FlagTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
