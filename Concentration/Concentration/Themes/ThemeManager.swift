@@ -21,4 +21,10 @@ class ThemeManager {
         let randomThemeIndex = themeArray.index(themeArray.startIndex, offsetBy: themeArray.count.arc4random)
         currentTheme = themeArray[randomThemeIndex]
     }
+    
+    func setTheme(_ name: String) {
+        if themes[name] != nil {
+            currentTheme = themes[name]!
+        }
+    }
 }
