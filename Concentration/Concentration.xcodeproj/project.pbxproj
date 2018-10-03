@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B2F604E216500DD00126281 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F604D216500DD00126281 /* Int.swift */; };
+		9B2F60502165078000126281 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F604F2165078000126281 /* Collection.swift */; };
 		9BC907922146DDDB00BBB034 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC907912146DDDB00BBB034 /* AppDelegate.swift */; };
 		9BC907942146DDDB00BBB034 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC907932146DDDB00BBB034 /* ViewController.swift */; };
 		9BC907972146DDDB00BBB034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC907952146DDDB00BBB034 /* Main.storyboard */; };
@@ -19,9 +21,12 @@
 		9BE7768E215D6D9F00037F54 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7768D215D6D9F00037F54 /* ThemeProtocol.swift */; };
 		9BE77691215D702700037F54 /* AnimalTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE77690215D702700037F54 /* AnimalTheme.swift */; };
 		9BE77695215D880700037F54 /* FlagTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE77694215D880700037F54 /* FlagTheme.swift */; };
+		9BE7769B215E707B00037F54 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7769A215E707B00037F54 /* ScoreBoard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B2F604D216500DD00126281 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		9B2F604F2165078000126281 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		9BC9078E2146DDDB00BBB034 /* Concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC907912146DDDB00BBB034 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BC907932146DDDB00BBB034 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +41,7 @@
 		9BE7768D215D6D9F00037F54 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
 		9BE77690215D702700037F54 /* AnimalTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalTheme.swift; sourceTree = "<group>"; };
 		9BE77694215D880700037F54 /* FlagTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagTheme.swift; sourceTree = "<group>"; };
+		9BE7769A215E707B00037F54 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B2F604C216500C200126281 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9B2F604D216500DD00126281 /* Int.swift */,
+				9B2F604F2165078000126281 /* Collection.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		9BC907852146DDDB00BBB034 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +83,7 @@
 		9BC907902146DDDB00BBB034 /* Concentration */ = {
 			isa = PBXGroup;
 			children = (
+				9B2F604C216500C200126281 /* Extensions */,
 				9BC907982146DDDD00BBB034 /* Assets.xcassets */,
 				9BC9079A2146DDDD00BBB034 /* LaunchScreen.storyboard */,
 				9BC907912146DDDB00BBB034 /* AppDelegate.swift */,
@@ -77,6 +93,7 @@
 				9BC9079D2146DDDD00BBB034 /* Info.plist */,
 				9BC907A62146DF5600BBB034 /* Card.swift */,
 				9BE7768F215D6DBE00037F54 /* Themes */,
+				9BE7769A215E707B00037F54 /* ScoreBoard.swift */,
 			);
 			path = Concentration;
 			sourceTree = "<group>";
@@ -168,10 +185,13 @@
 				9BC907942146DDDB00BBB034 /* ViewController.swift in Sources */,
 				9BE77691215D702700037F54 /* AnimalTheme.swift in Sources */,
 				9BC907922146DDDB00BBB034 /* AppDelegate.swift in Sources */,
+				9B2F60502165078000126281 /* Collection.swift in Sources */,
 				9BE7768A215D6D4400037F54 /* ThemeManager.swift in Sources */,
 				9BE7768E215D6D9F00037F54 /* ThemeProtocol.swift in Sources */,
 				9BC907A52146DF4B00BBB034 /* Concentration.swift in Sources */,
 				9BE7768C215D6D8100037F54 /* SmileyTheme.swift in Sources */,
+				9B2F604E216500DD00126281 /* Int.swift in Sources */,
+				9BE7769B215E707B00037F54 /* ScoreBoard.swift in Sources */,
 				9BC907A72146DF5600BBB034 /* Card.swift in Sources */,
 				9BE77695215D880700037F54 /* FlagTheme.swift in Sources */,
 			);

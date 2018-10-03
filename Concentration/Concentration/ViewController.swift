@@ -11,26 +11,22 @@ import UIKit
 class ViewController: UIViewController {
 
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
-    private var themeManager = ThemeManager()
+    private lazy var themeManager = ThemeManager()
    
-    var numberOfPairsOfCards: Int {
-        return (cardButtons.count + 1) / 2
-    
-    }
-    private(set) var flipCount = 0 {
-        didSet {
-            updateFlipCountLabel()
-        }
-    }
-    @IBOutlet private weak var flipCountLabel: UILabel! {
-        didSet {
-            updateFlipCountLabel()
-        }
-    }
     @IBOutlet private var cardButtons: [UIButton]!
+    @IBOutlet private weak var flipCountLabel: UILabel!
+    @IBOutlet private weak var scoreLabel: UILabel!
+    
+    var numberOfPairsOfCards: Int { return (cardButtons.count + 1) / 2 }
+    
+    @IBAction func startNewGame(_ sender: Any) {
+        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+        emoji = [Card: String]()
+        themeManager.setTheme(nil)
+        updateViewFromModel()
+    }
     
     @IBAction private func touchCard(_ sender: UIButton) {
-        flipCount += 1
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
@@ -43,13 +39,6 @@ class ViewController: UIViewController {
         for btn in cardButtons {
             btn.backgroundColor = themeManager.currentTheme.color
         }
-    }
-    
-    private func updateFlipCountLabel() {
-        flipCountLabel.attributedText = NSAttributedString(string: "Flips: \(flipCount)", attributes: [
-            .strokeWidth: 5.0,
-            .strokeColor: themeManager.currentTheme.color
-        ])
     }
     
     private func updateViewFromModel() {
@@ -69,6 +58,9 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1450931079) : themeManager.currentTheme.color
             }
         }
+        
+        flipCountLabel.text = "Flips: \(game.scoreBoard.flipCount)"
+        scoreLabel.text = "Score: \(game.scoreBoard.score)"
     }
     
     private var emoji = [Card: String]()
@@ -78,16 +70,5 @@ class ViewController: UIViewController {
             emoji[card] = themeManager.currentTheme.getRandomEmoji()
         }
         return emoji[card] ?? "?"
-    }
-}
-
-extension Int {
-    var arc4random: Int {
-        if self > 0 {
-            return Int(arc4random_uniform(UInt32(self)))
-        } else if self < 0 {
-            return -Int(arc4random_uniform(UInt32(abs(self))))
-        }
-        return 0
     }
 }

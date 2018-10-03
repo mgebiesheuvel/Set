@@ -18,7 +18,6 @@ protocol ThemeProtocol {
 }
 
 extension ThemeProtocol {
-    
     mutating func getRandomEmoji() -> String {
         let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4random)
         return  String(emojiChoices.remove(at: randomStringIndex))

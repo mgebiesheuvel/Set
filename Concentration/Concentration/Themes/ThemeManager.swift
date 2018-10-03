@@ -8,23 +8,28 @@
 
 import Foundation
 
-class ThemeManager {
+struct ThemeManager {
     
-    var currentTheme: ThemeProtocol
+    var currentTheme: ThemeProtocol!
     private var themes: [String: ThemeProtocol] = [
         "SmileyTheme": SmileyTheme(),
         "AnimalTheme": AnimalTheme(),
         "FlagTheme": FlagTheme()]
     
     init() {
-        let themeArray = Array(themes.values)
-        let randomThemeIndex = themeArray.index(themeArray.startIndex, offsetBy: themeArray.count.arc4random)
-        currentTheme = themeArray[randomThemeIndex]
+        setTheme(nil)
     }
     
-    func setTheme(_ name: String) {
-        if themes[name] != nil {
-            currentTheme = themes[name]!
+    mutating func setTheme(_ name: String?) {
+        if let themeName = name {
+            if themes[themeName] != nil {
+                currentTheme = themes[themeName]!
+            }
+        } else {
+            let themeArray = Array(themes.values)
+            let randomThemeIndex = themeArray.index(themeArray.startIndex, offsetBy: themeArray.count.arc4random)
+            
+            currentTheme = themeArray[randomThemeIndex]
         }
     }
 }
