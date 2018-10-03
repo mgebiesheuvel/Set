@@ -12,14 +12,14 @@ import UIKit
 protocol ThemeProtocol {
     
     var color: UIColor { get set }
-    var emojiChoices: String { get set }
+    var cardFaceChoices: String { get set }
     
-    mutating func getRandomEmoji() -> String
+    mutating func getRandomCardFace() -> String
 }
 
 extension ThemeProtocol {
-    mutating func getRandomEmoji() -> String {
-        let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4random)
-        return  String(emojiChoices.remove(at: randomStringIndex))
+    mutating func getRandomCardFace() -> String {
+        let randomStringIndex = cardFaceChoices.index(cardFaceChoices.startIndex, offsetBy: cardFaceChoices.count.arc4random)
+        return  String(cardFaceChoices.remove(at: randomStringIndex))
     }
 }

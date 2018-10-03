@@ -62,10 +62,9 @@ class ViewController: UIViewController {
     }
     
     private var emoji = [Card: String]()
-    
     private func emoji(for card: Card) -> String {
-        if emoji[card] == nil, themeManager.currentTheme.emojiChoices.count > 0 {
-            emoji[card] = themeManager.currentTheme.getRandomEmoji()
+        if emoji[card] == nil, themeManager.currentTheme.cardFaceChoices.count > 0 {
+            emoji[card] = themeManager.currentTheme.getRandomCardFace()
         }
         return emoji[card] ?? "?"
     }

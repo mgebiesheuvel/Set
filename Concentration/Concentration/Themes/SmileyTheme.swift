@@ -12,5 +12,5 @@ import UIKit
 struct SmileyTheme: ThemeProtocol {
     
     var color: UIColor = #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)
-    var emojiChoices: String = "😀😅😉😎🤓🤪🤔😴😬😂"
+    var cardFaceChoices: String = "😀😅😉😎🤓🤪🤔😴😬😂"
 }

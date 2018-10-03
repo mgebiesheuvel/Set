@@ -8,22 +8,22 @@
 
 import Foundation
 
-class ScoreBoard {
+struct ScoreBoard {
     
     private(set) var flipCount: Int = 0
     private(set) var score: Int = 0
     private var flippedCards: [Card] = [Card]()
     
-    func addFlip(with card:Card) {
+    mutating func addFlip(with card:Card) {
         flipCount += 1
         flippedCards.append(card)
     }
     
-    func addMatch(for card: Card) {
+    mutating func addMatch(for card: Card) {
         score += calcPoints(flippedCards.filter { $0 == card })
     }
     
-    func calcPoints(_ cards: [Card]) -> Int {
+    private func calcPoints(_ cards: [Card]) -> Int {
         switch cards.count {
         case 2:
             return 5
