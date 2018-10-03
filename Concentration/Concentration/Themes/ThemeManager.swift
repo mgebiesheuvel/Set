@@ -11,7 +11,7 @@ import Foundation
 struct ThemeManager {
     
     var currentTheme: ThemeProtocol!
-    private var themes: [String: ThemeProtocol] = [
+    let themes: [String: ThemeProtocol] = [
         "SmileyTheme": SmileyTheme(),
         "AnimalTheme": AnimalTheme(),
         "FlagTheme": FlagTheme(),

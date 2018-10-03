@@ -8,20 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     private var numberOfPairsOfCards: Int { return (cardButtons.count + 1) / 2 }
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     private lazy var themeManager = ThemeManager()
+    private var themePickerData = [String]()
+    private var selectedTheme = ""
     
     @IBOutlet private var cardButtons: [UIButton]!
     @IBOutlet private weak var flipCountLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
+    @IBOutlet weak var themePicker: UIPickerView!
     
     @IBAction func startNewGame(_ sender: Any) {
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
         emoji = [Card: String]()
-        themeManager.setTheme(nil)
+        themeManager.setTheme(selectedTheme)
         updateViewFromModel()
     }
     
@@ -38,6 +41,15 @@ class ViewController: UIViewController {
         for btn in cardButtons {
             btn.backgroundColor = themeManager.currentTheme.color
         }
+        
+        initThemePicker()
+    }
+    
+    fileprivate func initThemePicker() {
+        themePickerData = Array(themeManager.themes.keys)
+        themePicker.delegate = self
+        themePicker.dataSource = self
+        selectedTheme = themePickerData[0] // set first option as selected theme
     }
     
     private func updateViewFromModel() {
@@ -66,5 +78,21 @@ class ViewController: UIViewController {
             emoji[card] = themeManager.currentTheme.getRandomCardFace()
         }
         return emoji[card] ?? "?"
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return themePickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return themePickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedTheme = themePickerData[row]
     }
 }

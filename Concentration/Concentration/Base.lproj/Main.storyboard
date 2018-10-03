@@ -216,7 +216,7 @@
                                         <rect key="frame" x="0.0" y="408" width="343" height="199"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-6a-jeX">
-                                                <rect key="frame" x="0.0" y="65.5" width="343" height="68"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="199"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6eb-rY-fgf">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
@@ -236,16 +236,20 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kc2-tT-Fen">
-                                                        <rect key="frame" x="0.0" y="32" width="343" height="36"/>
+                                                        <rect key="frame" x="0.0" y="32" width="343" height="167"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaG-U0-ZLp">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="36"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaG-U0-ZLp">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="0.0"/>
                                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
                                                                 <state key="normal" title="Begin opnieuw"/>
                                                                 <connections>
                                                                     <action selector="startNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RKG-ca-Hvg"/>
                                                                 </connections>
                                                             </button>
+                                                            <pickerView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Y1-T8-a9a">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="167"/>
+                                                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
+                                                            </pickerView>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -268,6 +272,7 @@
                     <connections>
                         <outlet property="flipCountLabel" destination="vRz-a7-3ft" id="sBS-u3-6IF"/>
                         <outlet property="scoreLabel" destination="rJb-TM-F3y" id="T9A-6H-noQ"/>
+                        <outlet property="themePicker" destination="5Y1-T8-a9a" id="Nw3-bT-4Iu"/>
                         <outletCollection property="cardButtons" destination="u1u-hS-qol" collectionClass="NSMutableArray" id="XuM-hj-rMl"/>
                         <outletCollection property="cardButtons" destination="9cw-eH-MJF" collectionClass="NSMutableArray" id="IuX-V3-VG3"/>
                         <outletCollection property="cardButtons" destination="FeR-Fl-o5L" collectionClass="NSMutableArray" id="jma-cU-qwB"/>
