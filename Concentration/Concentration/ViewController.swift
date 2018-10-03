@@ -10,14 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private var numberOfPairsOfCards: Int { return (cardButtons.count + 1) / 2 }
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     private lazy var themeManager = ThemeManager()
-   
+    
     @IBOutlet private var cardButtons: [UIButton]!
     @IBOutlet private weak var flipCountLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
-    
-    var numberOfPairsOfCards: Int { return (cardButtons.count + 1) / 2 }
     
     @IBAction func startNewGame(_ sender: Any) {
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)

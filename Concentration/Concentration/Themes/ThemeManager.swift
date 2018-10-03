@@ -14,7 +14,8 @@ struct ThemeManager {
     private var themes: [String: ThemeProtocol] = [
         "SmileyTheme": SmileyTheme(),
         "AnimalTheme": AnimalTheme(),
-        "FlagTheme": FlagTheme()]
+        "FlagTheme": FlagTheme(),
+        "ChineseTheme": ChineseTheme()]
     
     init() {
         setTheme(nil)
