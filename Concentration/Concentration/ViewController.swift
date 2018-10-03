@@ -31,7 +31,7 @@ class ViewController: UIViewController {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
         } else {
-            print("choosen card was not in cardButtons")
+            print("chosen card was not in cardButtons")
         }
     }
     
@@ -50,11 +50,9 @@ class ViewController: UIViewController {
                 button.setTitle(emoji(for: card), for: UIControl.State.normal)
                 button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             } else {
-
                 if !card.isMatched {
                     button.setTitle("", for: UIControl.State.normal)
                 }
-                
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1450931079) : themeManager.currentTheme.color
             }
         }

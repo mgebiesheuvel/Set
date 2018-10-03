@@ -32,7 +32,7 @@ struct Concentration {
             let card = Card()
             cards += [card, card]
         }
-        //cards = shuffle(cards)
+        cards = shuffle(cards)
     }
     
     private func shuffle(_ cards: [Card]) -> [Card] {
