@@ -22,19 +22,11 @@ class GameViewController: UIViewController {
     private var game = Set()
     
     // MARK: outlets
-    @IBOutlet var cardButtons: [UIButton]! {
-        didSet {
-            updateCardButtonsFromModel()
-        }
-    }
+    @IBOutlet var cardButtons: [UIButton]!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var foundSetsLabel: UILabel!
     @IBOutlet weak var numberOfSetsOnBoardLabel: UILabel!
-    @IBOutlet weak var addThreeCardsButton: GameButton! {
-        didSet {
-            updateAddThreeCardsButtonFromModel()
-        }
-    }
+    @IBOutlet weak var addThreeCardsButton: GameButton!
     
     @IBAction func touchCardButton(_ sender: UIButton) {
         impact.impactOccurred() // give haptic feedback to the app user
@@ -45,7 +37,7 @@ class GameViewController: UIViewController {
     
     @IBAction func touchAddThreeCardsButton(_ sender: UIButton) {
         impact.impactOccurred() // give haptic feedback to the app user
-        game.addCardsOnBoard(3)
+        game.cheatByAddingThreeExtraCards()
         updateViewFromModel()
     }
     
@@ -55,8 +47,13 @@ class GameViewController: UIViewController {
         updateViewFromModel()
     }
     
-    // MARK: private interface
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        updateViewFromModel()
+    }
     
+    // MARK: private interface
     private func updateViewFromModel() {
         updateCardButtonsFromModel()
         updateAddThreeCardsButtonFromModel()

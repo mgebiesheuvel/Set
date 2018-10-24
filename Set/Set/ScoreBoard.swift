@@ -11,7 +11,8 @@ import Foundation
 struct ScoreBoard {
     
     private let matchPoints = 5
-    private let mismatchPoints = 3
+    private let mismatchPoints = 2
+    private let cheatPoints = 3
     
     private(set) var score: Int = 0
     
@@ -21,5 +22,9 @@ struct ScoreBoard {
     
     mutating func addMismatch() {
         score -= mismatchPoints
+    }
+    
+    mutating func addCheat() {
+        score -= cheatPoints
     }
 }

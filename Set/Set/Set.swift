@@ -14,6 +14,7 @@ struct Set {
     internal let maxNumberOfAllowedCardsOnBoard = 24
     internal let numberOfCardsAtGameStart = 12
     internal let numberOfCardsInSet = 3
+    internal let numberOfSetsOnBoardAllowedForCheating = 1
    
     // MARK: properties
     private(set) var scoreBoard = ScoreBoard()
@@ -85,6 +86,16 @@ struct Set {
                 }
             }
         }
+    }
+    
+    mutating func cheatByAddingThreeExtraCards() {
+        guard cardsOnBoard.count <= maxNumberOfAllowedCardsOnBoard else { return }
+        
+        if numberOfSetsOnBoard > numberOfSetsOnBoardAllowedForCheating {
+            scoreBoard.addCheat()
+        }
+        
+        addCardsOnBoard(numberOfCardsInSet)
     }
     
     // MARK: private interface
