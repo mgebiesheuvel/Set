@@ -14,7 +14,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     private lazy var themeManager = ThemeManager()
     private var themePickerData = [String]()
-    private var selectedTheme = ""
+    private var selectedTheme: String? = nil
     
     @IBOutlet private var cardButtons: [UIButton]!
     @IBOutlet private weak var flipCountLabel: UILabel!
@@ -46,10 +46,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     fileprivate func initThemePicker() {
-        themePickerData = Array(themeManager.themes.keys)
+        themePickerData = Array(themeManager.themes.keys).map {
+            let name = $0
+            let endIndex = name.index(name.endIndex, offsetBy: -5)
+            return String(name[..<endIndex])
+        }
+        themePickerData.insert("Random", at: 0)
         themePicker.delegate = self
         themePicker.dataSource = self
-        selectedTheme = themePickerData[0] // set first option as selected theme
     }
     
     private func updateViewFromModel() {
@@ -93,6 +97,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedTheme = themePickerData[row]
+        let chosenTheme = themePickerData[row]
+        selectedTheme = chosenTheme == "Random" ? nil : "\(chosenTheme)Theme"
     }
 }
