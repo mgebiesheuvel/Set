@@ -10,6 +10,9 @@ import UIKit
 
 class GameViewController: UIViewController {
     
+    // MARK: user feedbacl
+    var impact = UIImpactFeedbackGenerator()
+    
     // MARK: defaults
     private let colors = [#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)]
     private let shadings: [CGFloat] = [0.0, 0.4, 1.0]
@@ -34,17 +37,20 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func touchCardButton(_ sender: UIButton) {
+        impact.impactOccurred() // give haptic feedback to the app user
         guard let index = cardButtons.index(of: sender) else { return }
         game.chooseCard(atIndex: index)
         updateViewFromModel()
     }
     
     @IBAction func touchAddThreeCardsButton(_ sender: UIButton) {
+        impact.impactOccurred() // give haptic feedback to the app user
         game.addCardsOnBoard(3)
         updateViewFromModel()
     }
     
     @IBAction func touchStartNewGameButton(_ sender: UIButton) {
+        impact.impactOccurred() // give haptic feedback to the app user
         game = Set()
         updateViewFromModel()
     }
