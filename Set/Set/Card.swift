@@ -26,6 +26,7 @@ class Card {
         self.symbol = symbol
     }
     
+    // MARK: public interface
     func select() {
         isSelected = true
     }
