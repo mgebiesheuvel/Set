@@ -10,9 +10,11 @@ import UIKit
 
 class GameButton: UIButton {
     
+    // MARK: defaults
     private let cornerRadius: CGFloat = 5.0
     private let borderWidth: CGFloat = 3.0
 
+    // MARK: properties
     private let enabledColor: CGColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     private let disabledColor: CGColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     
@@ -25,6 +27,7 @@ class GameButton: UIButton {
         self.clipsToBounds = true
     }
     
+    // MARK: public interface
     func disable() {
         self.isEnabled = false
     }
