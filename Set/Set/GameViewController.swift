@@ -10,7 +10,7 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-    // MARK: user feedbacl
+    // MARK: user feedback
     var impact = UIImpactFeedbackGenerator()
     
     // MARK: defaults
