@@ -28,7 +28,6 @@ class CardButton: UIButton {
         self.clipsToBounds = true
     }
     
-    
     // MARK: public interface
     func hide() {
         self.inSelection = false
