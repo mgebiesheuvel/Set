@@ -10,11 +10,14 @@ import UIKit
 
 class CardButton: UIButton {
     
+    // MARK: defaults
     private let cornerRadius: CGFloat = 5.0
     private let borderWidth: CGFloat = 3.0
     private let transparentColor: CGColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
     private let inSelectionBorderColor: CGColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     private let cardFaceColor: CGColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    
+    // MARK: properties
     private var inSelection: Bool = false
     
     override func draw(_ rect: CGRect) {
@@ -25,6 +28,8 @@ class CardButton: UIButton {
         self.clipsToBounds = true
     }
     
+    
+    // MARK: public interface
     func hide() {
         self.inSelection = false
         self.setAttributedTitle(nil, for: .normal)
