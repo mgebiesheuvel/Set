@@ -9,13 +9,15 @@
 import Foundation
 
 struct ScoreBoard {
-    
+    // MARK: defaults
     private let matchPoints = 5
     private let mismatchPoints = 2
     private let cheatPoints = 3
     
+    // MARK: properties
     private(set) var score: Int = 0
     
+    // MARK: public interface
     mutating func addMatch() {
         score += matchPoints
     }
