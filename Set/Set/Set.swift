@@ -135,6 +135,10 @@ struct Set {
             symbols.append(card.symbol)
         }
         
+        return compare(&colors, &numbers, &shadings, &symbols)
+    }
+    
+    fileprivate func compare(_ colors: inout [Card.CardColor], _ numbers: inout [Card.CardNumber], _ shadings: inout [Card.CardShading], _ symbols: inout [Card.CardSymbol]) -> Bool {
         return !(colors.unique().count == 2 || numbers.unique().count == 2 ||
             shadings.unique().count == 2 || symbols.unique().count == 2)
     }
