@@ -123,10 +123,10 @@ struct Set {
     private func isSet(_ cards: [Card]) -> Bool {
         guard cards.count == numberOfCardsInSet else { return false }
     
-        var colors = [Card.CardColor]()
-        var numbers = [Card.CardNumber]()
-        var shadings = [Card.CardShading]()
-        var symbols = [Card.CardSymbol]()
+        var colors = [Card.CardColor](),
+            numbers = [Card.CardNumber](),
+            shadings = [Card.CardShading](),
+            symbols = [Card.CardSymbol]()
         
         for card in cards {
             colors.append(card.color)
