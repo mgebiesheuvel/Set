@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B5FBA522194D66B00DCB96B /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FBA512194D66B00DCB96B /* Score.swift */; };
 		9B62136C2174DD2C008679B2 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62136B2174DD2C008679B2 /* Set.swift */; };
 		9B62137A2174F696008679B2 /* CardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6213792174F696008679B2 /* CardButton.swift */; };
 		9B62137C217509BA008679B2 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62137B217509BA008679B2 /* GameButton.swift */; };
 		9B62137F2175243F008679B2 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62137E2175243F008679B2 /* Int.swift */; };
+		9BEA13F12194DF5E0066BBF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA13F02194DF5E0066BBF7 /* HomeViewController.swift */; };
+		9BEA13F32194E0B40066BBF7 /* ScoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA13F22194E0B40066BBF7 /* ScoreService.swift */; };
+		9BEA13F52194E1070066BBF7 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA13F42194E1070066BBF7 /* Storage.swift */; };
+		9BEA13F92194E2DF0066BBF7 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA13F82194E2DF0066BBF7 /* ScoreTableViewCell.swift */; };
+		9BEA13FC2194F7380066BBF7 /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA13FB2194F7380066BBF7 /* DateTime.swift */; };
 		9BECB3E1216CE43B00B70814 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BECB3E0216CE43B00B70814 /* AppDelegate.swift */; };
 		9BECB3E3216CE43B00B70814 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BECB3E2216CE43B00B70814 /* GameViewController.swift */; };
 		9BECB3E6216CE43B00B70814 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BECB3E4216CE43B00B70814 /* Main.storyboard */; };
@@ -34,10 +40,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B5FBA512194D66B00DCB96B /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		9B62136B2174DD2C008679B2 /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		9B6213792174F696008679B2 /* CardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButton.swift; sourceTree = "<group>"; };
 		9B62137B217509BA008679B2 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
 		9B62137E2175243F008679B2 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		9BEA13F02194DF5E0066BBF7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9BEA13F22194E0B40066BBF7 /* ScoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreService.swift; sourceTree = "<group>"; };
+		9BEA13F42194E1070066BBF7 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		9BEA13F82194E2DF0066BBF7 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
+		9BEA13FB2194F7380066BBF7 /* DateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
 		9BECB3DD216CE43B00B70814 /* Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Set.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BECB3E0216CE43B00B70814 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BECB3E2216CE43B00B70814 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +102,52 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9BEA13F62194E1EC0066BBF7 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				9BEA13F42194E1070066BBF7 /* Storage.swift */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		9BEA13F72194E1F40066BBF7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9BEA13F22194E0B40066BBF7 /* ScoreService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9BEA13FA2194F72E0066BBF7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9BEA13FB2194F7380066BBF7 /* DateTime.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		9BEA13FD2194FE3A0066BBF7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9BEA13F82194E2DF0066BBF7 /* ScoreTableViewCell.swift */,
+				9BECB3E2216CE43B00B70814 /* GameViewController.swift */,
+				9BEA13F02194DF5E0066BBF7 /* HomeViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9BEA13FE2194FE780066BBF7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9BECB3F3216CE56D00B70814 /* Card.swift */,
+				9B62136B2174DD2C008679B2 /* Set.swift */,
+				9BF08D6C2180B98000827788 /* CardProperty.swift */,
+				9BF08D722180E69900827788 /* ScoreBoard.swift */,
+				9B5FBA512194D66B00DCB96B /* Score.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		9BECB3D4216CE43B00B70814 = {
 			isa = PBXGroup;
 			children = (
@@ -111,16 +169,16 @@
 		9BECB3DF216CE43B00B70814 /* Set */ = {
 			isa = PBXGroup;
 			children = (
+				9BECB3EC216CE43C00B70814 /* Info.plist */,
+				9BEA13FA2194F72E0066BBF7 /* Utils */,
 				9B62138021752443008679B2 /* Extensions */,
-				9BECB3F3216CE56D00B70814 /* Card.swift */,
+				9BEA13FE2194FE780066BBF7 /* Models */,
 				9BECB3F2216CE45800B70814 /* Supporting Files */,
-				9BECB3E2216CE43B00B70814 /* GameViewController.swift */,
+				9BEA13FD2194FE3A0066BBF7 /* Controllers */,
 				9BECB3E4216CE43B00B70814 /* Main.storyboard */,
 				9B62137D21750A7C008679B2 /* UI */,
-				9B62136B2174DD2C008679B2 /* Set.swift */,
-				9BECB3EC216CE43C00B70814 /* Info.plist */,
-				9BF08D6C2180B98000827788 /* CardProperty.swift */,
-				9BF08D722180E69900827788 /* ScoreBoard.swift */,
+				9BEA13F72194E1F40066BBF7 /* Services */,
+				9BEA13F62194E1EC0066BBF7 /* Libs */,
 			);
 			path = Set;
 			sourceTree = "<group>";
@@ -246,14 +304,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BF08D6F2180E2CB00827788 /* Array.swift in Sources */,
+				9BEA13F52194E1070066BBF7 /* Storage.swift in Sources */,
 				9B62136C2174DD2C008679B2 /* Set.swift in Sources */,
 				9B62137C217509BA008679B2 /* GameButton.swift in Sources */,
 				9BECB3E3216CE43B00B70814 /* GameViewController.swift in Sources */,
 				9B62137F2175243F008679B2 /* Int.swift in Sources */,
+				9BEA13FC2194F7380066BBF7 /* DateTime.swift in Sources */,
 				9BF08D6D2180B98000827788 /* CardProperty.swift in Sources */,
 				9BECB3F4216CE56D00B70814 /* Card.swift in Sources */,
 				9BF08D732180E69900827788 /* ScoreBoard.swift in Sources */,
+				9BEA13F12194DF5E0066BBF7 /* HomeViewController.swift in Sources */,
+				9BEA13F92194E2DF0066BBF7 /* ScoreTableViewCell.swift in Sources */,
+				9BEA13F32194E0B40066BBF7 /* ScoreService.swift in Sources */,
 				9BECB3E1216CE43B00B70814 /* AppDelegate.swift in Sources */,
+				9B5FBA522194D66B00DCB96B /* Score.swift in Sources */,
 				9B62137A2174F696008679B2 /* CardButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LRQ523FNTF;
 				INFOPLIST_FILE = Set/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -437,6 +502,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LRQ523FNTF;
 				INFOPLIST_FILE = Set/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -60,6 +60,21 @@ class GameViewController: UIViewController {
         updateFoundSetsLabel()
         updateScoreLabel()
         udateNumberOfSetsOnBoardLabel()
+        checkGameIsOver()
+    }
+    
+    private func checkGameIsOver() {
+        if game.numberOfSetsOnBoard == 0 && game.deck.count > 0{
+            let alert = UIAlertController(title: "Game Over!", message: "Het spel is voorbij. Er zijn geen sets meer op het bord.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Thnks!", style: .default , handler: { (_) in
+                self.navigationController?.popViewController(animated: true)
+                
+                ScoreService().store(
+                    score: Score(score: self.game.scoreBoard.score, amountOfSets: self.game.foundSets, date: DateTime().getCurrentDate(in: nil))
+                )
+            }))
+            self.present(alert, animated: true)
+        }
     }
     
     private func updateCardButtonsFromModel() {
