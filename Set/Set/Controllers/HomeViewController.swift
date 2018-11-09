@@ -29,7 +29,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private func initScoreTableView() {
         scoreTabelView.dataSource = self
         scoreTabelView.delegate = self
-        scoreTabelView.backgroundColor = #colorLiteral(red: 0.04486183464, green: 0.6285493338, blue: 0.09394457164, alpha: 1)
         scoreTabelView.tableFooterView = UIView()
     }
     

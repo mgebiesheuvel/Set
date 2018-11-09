@@ -15,15 +15,16 @@ class GameButton: UIButton {
     private let borderWidth: CGFloat = 3.0
 
     // MARK: properties
-    private let enabledColor: CGColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    private let enabledColor: CGColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
     private let disabledColor: CGColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        self.layer.cornerRadius = cornerRadius
-        self.layer.borderWidth = borderWidth
-        self.layer.borderColor = self.isEnabled ? enabledColor : disabledColor
-        self.setTitleColor(self.isEnabled ? UIColor(cgColor: enabledColor) : UIColor(cgColor: disabledColor), for: .normal)
+        
+        if !self.isEnabled {
+            self.setTitleColor(UIColor(cgColor: disabledColor), for: .normal)
+        }
+    
         self.clipsToBounds = true
     }
     

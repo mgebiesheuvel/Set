@@ -41,10 +41,16 @@ class GameViewController: UIViewController {
         updateViewFromModel()
     }
     
-    @IBAction func touchStartNewGameButton(_ sender: UIButton) {
+    @IBAction func touchEndGameButton(_ sender: UIButton) {
         impact.impactOccurred() // give haptic feedback to the app user
-        game = Set()
-        updateViewFromModel()
+        
+        let alert = UIAlertController(title: "Zeker weten?", message: "Het spel stopt en je score wordt niet opgeslagen.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ja", style: .default , handler: { (_) in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Annuleer", style: .default , handler: { (_) in }))
+        self.present(alert, animated: true)
     }
     
     override func viewDidLoad() {
