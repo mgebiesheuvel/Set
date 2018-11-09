@@ -64,7 +64,7 @@ class GameViewController: UIViewController {
     }
     
     private func checkGameIsOver() {
-        if game.numberOfSetsOnBoard == 0 && game.deck.count > 0{
+        if game.numberOfSetsOnBoard == 0 && game.deck.count == 0{
             let alert = UIAlertController(title: "Game Over!", message: "Het spel is voorbij. Er zijn geen sets meer op het bord.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Thnks!", style: .default , handler: { (_) in
                 self.navigationController?.popViewController(animated: true)
