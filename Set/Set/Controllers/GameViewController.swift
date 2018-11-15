@@ -46,7 +46,7 @@ class GameViewController: UIViewController {
         
         let alert = UIAlertController(title: "Zeker weten?", message: "Het spel stopt en je score wordt niet opgeslagen.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ja", style: .default , handler: { (_) in
-            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true)
         }))
         
         alert.addAction(UIAlertAction(title: "Annuleer", style: .default , handler: { (_) in }))
@@ -70,10 +70,10 @@ class GameViewController: UIViewController {
     }
     
     private func checkGameIsOver() {
-        if game.numberOfSetsOnBoard == 0 && game.deck.count == 0{
+        if 1==1 || game.numberOfSetsOnBoard == 0 && game.deck.count == 0{
             let alert = UIAlertController(title: "Game Over!", message: "Het spel is voorbij. Er zijn geen sets meer op het bord.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Thnks!", style: .default , handler: { (_) in
-                self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true, completion: nil)
                 
                 ScoreService().store(
                     score: Score(score: self.game.scoreBoard.score, amountOfSets: self.game.foundSets, date: DateTime().getCurrentDate(in: nil))

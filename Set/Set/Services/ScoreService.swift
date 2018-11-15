@@ -30,4 +30,10 @@ struct ScoreService {
         Storage.store(scores.sorted(by: { $0.score > $1.score }), to: directory, as: fileName)
     }
     
+    func remove(at index: Int) {
+        var scores = getAllScores()
+        scores.remove(at: index)
+        Storage.store(scores.sorted(by: { $0.score > $1.score }), to: directory, as: fileName)
+    }
+    
 }

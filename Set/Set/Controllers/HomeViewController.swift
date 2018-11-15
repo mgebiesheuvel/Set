@@ -47,4 +47,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.initCell(score: scores[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            ScoreService().remove(at: indexPath.row)
+            self.scores = ScoreService().getAllScores()
+            
+            self.scoreTabelView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 }

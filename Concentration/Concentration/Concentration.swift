@@ -52,6 +52,7 @@ struct Concentration {
         scoreBoard.addFlip(with: cards[index])
             
         if !cards[index].isMatched {
+            
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 
                 // check if cards match
