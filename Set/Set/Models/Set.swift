@@ -17,9 +17,9 @@ struct Set {
     internal let numberOfSetsOnBoardAllowedForCheating = 1
    
     // MARK: properties
-    private(set) var scoreBoard = ScoreBoard()
-    private(set) var deck = [Card]()
-    private var board = [Card]()
+    var scoreBoard = ScoreBoard()
+    var deck = [Card]()
+    var board = [Card]()
     
     // MARK: public interface
     
@@ -27,7 +27,24 @@ struct Set {
     var cardsOnBoard: [Card] { return board.filter { !$0.isMatched }}
     var cardsInSelection: [Card] { return board.filter { $0.isSelected }}
     var foundSets: Int { return (board.filter { $0.isMatched }.count / numberOfCardsInSet)}
-    var numberOfSetsOnBoard = 0
+    var numberOfSetsOnBoard: Int {
+        var result = [[Card]]()
+        
+        if cardsOnBoard.count >= numberOfCardsInSet {
+            for i in 0..<cardsOnBoard.count {
+                for j in (i+1)..<cardsOnBoard.count {
+                    for k in (j+1)..<cardsOnBoard.count {
+                        let cards = [cardsOnBoard[i], cardsOnBoard[j], cardsOnBoard[k]]
+                        
+                        if isSet(cards) {
+                            result.append(cards)
+                        }
+                    }
+                }
+            }
+        }
+        return result.count
+    }
     
     init () {
         for color in Card.CardColor.allValues {
@@ -53,8 +70,6 @@ struct Set {
                 board.append(deck.remove(at: index))
             }
         }
-        
-        calcNumberOfSetsOnBoard()
     }
     
     mutating func chooseCard(atIndex index: Int) {
@@ -99,26 +114,7 @@ struct Set {
     }
     
     // MARK: private interface
-    
-    private mutating func calcNumberOfSetsOnBoard() {
-        var result = [[Card]]()
-        
-        if cardsOnBoard.count >= numberOfCardsInSet {
-            for i in 0..<cardsOnBoard.count {
-                for j in (i+1)..<cardsOnBoard.count {
-                    for k in (j+1)..<cardsOnBoard.count {
-                        let cards = [cardsOnBoard[i], cardsOnBoard[j], cardsOnBoard[k]]
-                        
-                        if isSet(cards) {
-                            result.append(cards)
-                        }
-                    }
-                }
-            }
-        }
-        
-        numberOfSetsOnBoard = result.count
-    }
+
     
     private func isSet(_ cards: [Card]) -> Bool {
         guard cards.count == numberOfCardsInSet else { return false }

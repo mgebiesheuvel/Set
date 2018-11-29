@@ -35,5 +35,4 @@ struct ScoreService {
         scores.remove(at: index)
         Storage.store(scores.sorted(by: { $0.score > $1.score }), to: directory, as: fileName)
     }
-    
 }

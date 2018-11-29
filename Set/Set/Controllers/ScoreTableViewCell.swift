@@ -14,9 +14,9 @@ class ScoreTableViewCell: UITableViewCell {
     @IBOutlet weak var amountOfSetsLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    func initCell(score: Score) {
-        self.scoreLabel.text = String(score.score)
-        self.amountOfSetsLabel.text = String(score.amountOfSets)
-        self.dateLabel.text = score.date
+    func initCell(score: String, amountOfSets: String, date: String) {
+        self.scoreLabel.text = "\(score) punten"
+        self.amountOfSetsLabel.text = "\(amountOfSets) sets"
+        self.dateLabel.text = date
     }
 }

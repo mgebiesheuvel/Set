@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Card {
+class Card: Codable {
     
     // MARK: properties
     var color: CardColor
@@ -41,7 +41,7 @@ class Card {
     }
     
     // MARK: card properties
-    enum CardColor: Int, Hashable, CardProperty {
+    enum CardColor: Int, Hashable, Codable, CardProperty {
         case red = 1, green, blue
         
         static let allValues = [red, green, blue]
@@ -50,7 +50,7 @@ class Card {
         }
     }
     
-    enum CardNumber: Int, Hashable, CardProperty {
+    enum CardNumber: Int, Hashable, Codable, CardProperty {
         case one = 1 , two, three
         
         static let allValues = [one, two, three]
@@ -59,7 +59,7 @@ class Card {
         }
     }
     
-    enum CardShading: Int, Hashable, CardProperty {
+    enum CardShading: Int, Hashable, Codable, CardProperty {
         case open = 1, striped, solid
         
         static let allValues = [open, striped, solid]
@@ -68,7 +68,7 @@ class Card {
         }
     }
     
-    enum CardSymbol: Int, Hashable, CardProperty {
+    enum CardSymbol: Int, Hashable, Codable, CardProperty {
         case diamond = 1, circle, triangle
         
         static let allValues = [diamond, circle, triangle]

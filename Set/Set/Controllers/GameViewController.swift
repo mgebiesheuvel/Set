@@ -44,23 +44,40 @@ class GameViewController: UIViewController {
     @IBAction func touchEndGameButton(_ sender: UIButton) {
         impact.impactOccurred() // give haptic feedback to the app user
         
-        let alert = UIAlertController(title: "Zeker weten?", message: "Het spel stopt en je score wordt niet opgeslagen.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ja", style: .default , handler: { (_) in
+        let alert = UIAlertController(title: "En nu?", message: "Je kunt toch doorgaan, stoppen en het spel opslaan of stoppen en de voortgang verwijderen.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Toch doorgaan", style: .default , handler: { (_) in }))
+        
+        alert.addAction(UIAlertAction(title: "Stoppen en opslaan", style: .default , handler: { (_) in
+            self.saveGame()
+            self.dismiss(animated: true)
+        }))
+
+        
+        alert.addAction(UIAlertAction(title: "Stoppen en verwijderen", style: .default , handler: { (_) in
+            GameService().clear()
             self.dismiss(animated: true)
         }))
         
-        alert.addAction(UIAlertAction(title: "Annuleer", style: .default , handler: { (_) in }))
         self.present(alert, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let game = GameService().getGame() {
+            self.game.deck = game.deck
+            self.game.board = game.board
+            self.game.scoreBoard.score = game.score
+        }
         
         updateViewFromModel()
     }
     
     // MARK: private interface
     private func updateViewFromModel() {
+        
+        saveGame()
+        
         updateCardButtonsFromModel()
         updateAddThreeCardsButtonFromModel()
         updateFoundSetsLabel()
@@ -69,10 +86,15 @@ class GameViewController: UIViewController {
         checkGameIsOver()
     }
     
+    private func saveGame() {
+        let savedGame = SavedGame(deck: game.deck, board: game.board, score: game.scoreBoard.score)
+        GameService().store(game: savedGame)
+    }
+    
     private func checkGameIsOver() {
-        if 1==1 || game.numberOfSetsOnBoard == 0 && game.deck.count == 0{
+        if game.numberOfSetsOnBoard == 0 && game.deck.count == 0{
             let alert = UIAlertController(title: "Game Over!", message: "Het spel is voorbij. Er zijn geen sets meer op het bord.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Thnks!", style: .default , handler: { (_) in
+            alert.addAction(UIAlertAction(title: "Oke!", style: .default , handler: { (_) in
                 self.dismiss(animated: true, completion: nil)
                 
                 ScoreService().store(

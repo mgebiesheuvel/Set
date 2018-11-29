@@ -15,7 +15,7 @@ struct ScoreBoard {
     private let cheatPoints = 3
     
     // MARK: properties
-    private(set) var score: Int = 0
+    var score: Int = 0
     
     // MARK: public interface
     mutating func addMatch() {
