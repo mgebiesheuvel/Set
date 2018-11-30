@@ -45,15 +45,11 @@ class GameViewController: UIViewController {
         impact.impactOccurred() // give haptic feedback to the app user
         
         let alert = UIAlertController(title: "En nu?", message: "Je kunt toch doorgaan, stoppen en het spel opslaan of stoppen en de voortgang verwijderen.", preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction(title: "Toch doorgaan", style: .default , handler: { (_) in }))
-        
         alert.addAction(UIAlertAction(title: "Stoppen en opslaan", style: .default , handler: { (_) in
             self.saveGame()
             self.dismiss(animated: true)
         }))
-
-        
         alert.addAction(UIAlertAction(title: "Stoppen en verwijderen", style: .default , handler: { (_) in
             GameService().clear()
             self.dismiss(animated: true)
@@ -64,12 +60,6 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let game = GameService().getGame() {
-            self.game.deck = game.deck
-            self.game.board = game.board
-            self.game.scoreBoard.score = game.score
-        }
-        
         updateViewFromModel()
     }
     
@@ -84,6 +74,19 @@ class GameViewController: UIViewController {
         updateScoreLabel()
         udateNumberOfSetsOnBoardLabel()
         checkGameIsOver()
+    }
+    
+    private func restoreGame() {
+        guard let savedGame = GameService().getGame() else { return }
+    
+        self.game.deck = savedGame.deck
+        self.game.board = savedGame.board
+        self.game.scoreBoard.score = savedGame.score
+        
+        for card in self.game.board {
+            card.deselect()
+        }
+        
     }
     
     private func saveGame() {
