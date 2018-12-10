@@ -73,6 +73,8 @@ struct Set {
     }
     
     mutating func chooseCard(atIndex index: Int) {
+        let currentNumberOfCards = cardsOnBoard.count
+        
         if cardsInSelection.count >= numberOfCardsInSet {
             for card in cardsInSelection {
                 card.deselect()
@@ -95,7 +97,10 @@ struct Set {
                     }
                     
                     scoreBoard.addMatch()
-                    addCardsOnBoard(numberOfCardsInSet) // replace cards in valid set by new ones
+                    
+                    if currentNumberOfCards <= numberOfCardsAtGameStart {
+                         addCardsOnBoard(numberOfCardsInSet) // replace cards in valid set by new ones
+                    }
                 } else {
                     scoreBoard.addMismatch()
                 }
