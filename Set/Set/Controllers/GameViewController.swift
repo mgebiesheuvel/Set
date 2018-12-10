@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
     
     // MARK: properties
     private var game = Set()
+    var timer = Timer()
     
     // MARK: outlets
     @IBOutlet var cardButtons: [UIButton]!
@@ -27,6 +28,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var foundSetsLabel: UILabel!
     @IBOutlet weak var numberOfSetsOnBoardLabel: UILabel!
     @IBOutlet weak var addThreeCardsButton: GameButton!
+    @IBOutlet weak var timeLabel: UILabel!
     
     @IBAction func touchCardButton(_ sender: UIButton) {
         impact.impactOccurred() // give haptic feedback to the app user
@@ -43,9 +45,12 @@ class GameViewController: UIViewController {
     
     @IBAction func touchEndGameButton(_ sender: UIButton) {
         impact.impactOccurred() // give haptic feedback to the app user
+        timer.invalidate()
         
         let alert = UIAlertController(title: "En nu?", message: "Je kunt toch doorgaan, stoppen en het spel opslaan of stoppen en de voortgang verwijderen.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Toch doorgaan", style: .default , handler: { (_) in }))
+        alert.addAction(UIAlertAction(title: "Toch doorgaan", style: .default , handler: { (_) in
+            self.startTimer()
+        }))
         alert.addAction(UIAlertAction(title: "Stoppen en opslaan", style: .default , handler: { (_) in
             self.saveGame()
             self.dismiss(animated: true)
@@ -62,19 +67,29 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         restoreGame()
         updateViewFromModel()
+        startTimer()
     }
     
     // MARK: private interface
     private func updateViewFromModel() {
-        
         saveGame()
-        
         updateCardButtonsFromModel()
         updateAddThreeCardsButtonFromModel()
         updateFoundSetsLabel()
         updateScoreLabel()
         udateNumberOfSetsOnBoardLabel()
+        updateTimeLabel()
         checkGameIsOver()
+    }
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: (#selector(GameViewController.updateTimeLabel)),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     private func restoreGame() {
@@ -83,15 +98,21 @@ class GameViewController: UIViewController {
         self.game.deck = savedGame.deck
         self.game.board = savedGame.board
         self.game.scoreBoard.score = savedGame.score
+        self.game.timer.restore(time: savedGame.time)
         
         for card in self.game.board {
             card.deselect()
         }
-        
     }
     
     private func saveGame() {
-        let savedGame = SavedGame(deck: game.deck, board: game.board, score: game.scoreBoard.score)
+        let savedGame = SavedGame(
+            deck: game.deck,
+            board: game.board,
+            score: game.scoreBoard.score,
+            time: game.timer.runningTime
+        )
+        
         GameService().store(game: savedGame)
     }
     
@@ -102,7 +123,7 @@ class GameViewController: UIViewController {
                 self.dismiss(animated: true, completion: nil)
                 
                 ScoreService().store(
-                    score: Score(score: self.game.scoreBoard.score, amountOfSets: self.game.foundSets, date: DateTime().getCurrentDate(in: nil))
+                    score: Score(score: self.game.scoreBoard.score, amountOfSets: self.game.foundSets, time: self.game.timer.runningTime, date: DateTime().getCurrentDate(in: nil))
                 )
             }))
             self.present(alert, animated: true)
@@ -149,6 +170,12 @@ class GameViewController: UIViewController {
     
     private func updateFoundSetsLabel() {
         foundSetsLabel.text = "Sets: \(game.foundSets)"
+    }
+    
+    @objc private func updateTimeLabel() {
+        game.timer.updateRunningTime()
+        let formattedTime = DateTime.formatTimeIntoString(game.timer.runningTime)
+        timeLabel.text = "Tijd: \(formattedTime)"
     }
     
     private func updateScoreLabel() {

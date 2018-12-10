@@ -12,11 +12,13 @@ class ScoreTableViewCell: UITableViewCell {
     
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var amountOfSetsLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    func initCell(score: String, amountOfSets: String, date: String) {
+    func initCell(score: String, amountOfSets: String, time: String, date: String) {
         self.scoreLabel.text = "\(score) punten"
         self.amountOfSetsLabel.text = "\(amountOfSets) sets"
+        self.timeLabel.text = "\(time) min."
         self.dateLabel.text = date
     }
 }

@@ -12,5 +12,6 @@ struct Score: Codable {
     // MARK: properties
     let score: Int
     let amountOfSets: Int
+    let time: Int
     let date: String
 }

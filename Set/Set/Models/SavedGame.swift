@@ -12,12 +12,5 @@ struct SavedGame: Codable {
     let deck: [Card]
     let board: [Card]
     let score: Int
-}
-
-
-struct Score2: Codable {
-    // MARK: properties
-    let score: Int
-    let amountOfSets: Int
-    let date: String
+    let time: Int
 }

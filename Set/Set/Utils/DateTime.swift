@@ -19,4 +19,19 @@ struct DateTime {
         formatter.dateFormat = format ?? defaultFormat
         return formatter.string(from: date)
     }
+        
+    static func formatTimeIntoString(_ time: Int) -> String {
+        let hours = Int(time / 3600)
+        let remaining = Float(time - (hours * 3600))
+        let minutes = Int(remaining / 60)
+        let seconds = Int(remaining - Float(minutes * 60))
+        
+        var formattedTime = String(format: "%02d:%02d", minutes, seconds)
+        
+        if hours > 0 {
+            formattedTime = String(format: "%02d:"+formattedTime, hours)
+        }
+        
+        return formattedTime
+    }
 }

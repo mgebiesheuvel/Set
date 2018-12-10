@@ -18,6 +18,7 @@ struct Set {
    
     // MARK: properties
     var scoreBoard = ScoreBoard()
+    var timer = SetTimer()
     var deck = [Card]()
     var board = [Card]()
     
