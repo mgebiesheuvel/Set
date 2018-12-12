@@ -97,8 +97,13 @@ class GameViewController: UIViewController {
     
         self.game.deck = savedGame.deck
         self.game.board = savedGame.board
-        self.game.scoreBoard.score = savedGame.score
-        self.game.timer.restore(time: savedGame.time)
+        self.game.scoreBoard.points = savedGame.score
+        
+        if let time = savedGame.time {
+           self.game.timer.restore(time: time)
+        } else {
+            self.game.timer.restore(time: 0)
+        }
         
         for card in self.game.board {
             card.deselect()
@@ -109,7 +114,7 @@ class GameViewController: UIViewController {
         let savedGame = SavedGame(
             deck: game.deck,
             board: game.board,
-            score: game.scoreBoard.score,
+            score: game.scoreBoard.points,
             time: game.timer.runningTime
         )
         
@@ -123,7 +128,12 @@ class GameViewController: UIViewController {
                 self.dismiss(animated: true, completion: nil)
                 
                 ScoreService().store(
-                    score: Score(score: self.game.scoreBoard.score, amountOfSets: self.game.foundSets, time: self.game.timer.runningTime, date: DateTime().getCurrentDate(in: nil))
+                    score: Score(
+                        score: self.game.scoreBoard.calcScore(time: self.game.timer.runningTime),
+                        amountOfSets: self.game.foundSets,
+                        time: self.game.timer.runningTime,
+                        date: DateTime().getCurrentDate(in: nil)
+                    )
                 )
             }))
             self.present(alert, animated: true)
@@ -179,7 +189,7 @@ class GameViewController: UIViewController {
     }
     
     private func updateScoreLabel() {
-        scoreLabel.text = "Score: \(game.scoreBoard.score)"
+        scoreLabel.text = "Punten: \(game.scoreBoard.points)"
     }
     
     private func udateNumberOfSetsOnBoardLabel() {

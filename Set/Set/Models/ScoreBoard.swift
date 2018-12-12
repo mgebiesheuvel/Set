@@ -15,18 +15,22 @@ struct ScoreBoard {
     private let cheatPoints = 3
     
     // MARK: properties
-    var score: Int = 0
+    var points: Int = 0
     
     // MARK: public interface
     mutating func addMatch() {
-        score += matchPoints
+        points += matchPoints
     }
     
     mutating func addMismatch() {
-        score -= mismatchPoints
+        points -= mismatchPoints
     }
     
     mutating func addCheat() {
-        score -= cheatPoints
+        points -= cheatPoints
+    }
+    
+    func calcScore(time: Int) -> Int {
+        return points * (time / 100)
     }
 }

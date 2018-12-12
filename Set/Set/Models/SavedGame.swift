@@ -12,5 +12,5 @@ struct SavedGame: Codable {
     let deck: [Card]
     let board: [Card]
     let score: Int
-    let time: Int
+    let time: Int?
 }

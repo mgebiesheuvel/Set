@@ -23,6 +23,8 @@ class GameButton: UIButton {
         
         if !self.isEnabled {
             self.setTitleColor(UIColor(cgColor: disabledColor), for: .normal)
+        } else {
+            self.setTitleColor(UIColor(cgColor: enabledColor), for: .normal)
         }
     
         self.clipsToBounds = true

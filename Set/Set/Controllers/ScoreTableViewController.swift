@@ -35,11 +35,23 @@ class ScoreTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let score = scores[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "score-label", for: indexPath) as! ScoreTableViewCell
-        cell.initCell(
-            score: String(score.score),
-            amountOfSets: String(score.amountOfSets),
-            time: DateTime.formatTimeIntoString(score.time),
-            date: String(score.date))
+        
+        if let time = score.time {
+            cell.initCell(
+                score: String(score.score),
+                amountOfSets: String(score.amountOfSets),
+                time: DateTime.formatTimeIntoString(time),
+                date: String(score.date)
+            )
+        } else {
+            cell.initCell(
+                score: String(score.score),
+                amountOfSets: String(score.amountOfSets),
+                time: "0",
+                date: String(score.date)
+            )
+        }
+       
         
         return cell
     }
