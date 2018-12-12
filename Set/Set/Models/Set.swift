@@ -97,7 +97,7 @@ struct Set {
                         card.match()
                     }
                     
-                    scoreBoard.addMatch()
+                    scoreBoard.calcScore(timeNeeded: timer.getTimeNeeded())
                     
                     if currentNumberOfCards <= numberOfCardsAtGameStart {
                          addCardsOnBoard(numberOfCardsInSet) // replace cards in valid set by new ones

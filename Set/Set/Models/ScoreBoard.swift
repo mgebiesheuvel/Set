@@ -10,27 +10,23 @@ import Foundation
 
 struct ScoreBoard {
     // MARK: defaults
-    private let matchPoints = 5
-    private let mismatchPoints = 2
-    private let cheatPoints = 3
+    private let mismatchPoints = 6
+    private let cheatPoints = 10
     
     // MARK: properties
-    var points: Int = 0
+    var score: Int = 0
     
     // MARK: public interface
-    mutating func addMatch() {
-        points += matchPoints
+    mutating func calcScore(timeNeeded: Int) {
+        let calcScore = 1000 / timeNeeded
+        score += calcScore > 1 ? calcScore : 1
     }
     
     mutating func addMismatch() {
-        points -= mismatchPoints
+        score -= mismatchPoints
     }
     
     mutating func addCheat() {
-        points -= cheatPoints
-    }
-    
-    func calcScore(time: Int) -> Int {
-        return points * (time / 100)
+        score -= cheatPoints
     }
 }

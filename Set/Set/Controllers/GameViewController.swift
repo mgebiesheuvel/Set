@@ -73,13 +73,14 @@ class GameViewController: UIViewController {
     // MARK: private interface
     private func updateViewFromModel() {
         saveGame()
+        checkGameIsOver()
+        updateTimeLabel()
         updateCardButtonsFromModel()
         updateAddThreeCardsButtonFromModel()
         updateFoundSetsLabel()
         updateScoreLabel()
         udateNumberOfSetsOnBoardLabel()
-        updateTimeLabel()
-        checkGameIsOver()
+        
     }
     
     func startTimer() {
@@ -97,7 +98,7 @@ class GameViewController: UIViewController {
     
         self.game.deck = savedGame.deck
         self.game.board = savedGame.board
-        self.game.scoreBoard.points = savedGame.score
+        self.game.scoreBoard.score = savedGame.score
         
         if let time = savedGame.time {
            self.game.timer.restore(time: time)
@@ -114,7 +115,7 @@ class GameViewController: UIViewController {
         let savedGame = SavedGame(
             deck: game.deck,
             board: game.board,
-            score: game.scoreBoard.points,
+            score: game.scoreBoard.score,
             time: game.timer.runningTime
         )
         
@@ -122,19 +123,21 @@ class GameViewController: UIViewController {
     }
     
     private func checkGameIsOver() {
-        if game.numberOfSetsOnBoard == 0 && game.deck.count == 0{
+        if game.numberOfSetsOnBoard == 0 && game.deck.count == 0 {
+            timer.invalidate()
+            ScoreService().store(
+                score: Score(
+                    score: self.game.scoreBoard.score,
+                    amountOfSets: self.game.foundSets,
+                    time: self.game.timer.runningTime,
+                    date: DateTime().getCurrentDate(in: nil)
+                )
+            )
+            GameService().clear()
+            
             let alert = UIAlertController(title: "Game Over!", message: "Het spel is voorbij. Er zijn geen sets meer op het bord.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Oke!", style: .default , handler: { (_) in
                 self.dismiss(animated: true, completion: nil)
-                
-                ScoreService().store(
-                    score: Score(
-                        score: self.game.scoreBoard.calcScore(time: self.game.timer.runningTime),
-                        amountOfSets: self.game.foundSets,
-                        time: self.game.timer.runningTime,
-                        date: DateTime().getCurrentDate(in: nil)
-                    )
-                )
             }))
             self.present(alert, animated: true)
         }
@@ -189,7 +192,7 @@ class GameViewController: UIViewController {
     }
     
     private func updateScoreLabel() {
-        scoreLabel.text = "Punten: \(game.scoreBoard.points)"
+        scoreLabel.text = "Punten: \(game.scoreBoard.score)"
     }
     
     private func udateNumberOfSetsOnBoardLabel() {
