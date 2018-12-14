@@ -65,6 +65,9 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         restoreGame()
         updateViewFromModel()
         startTimer()
