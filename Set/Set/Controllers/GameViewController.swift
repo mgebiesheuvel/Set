@@ -25,9 +25,7 @@ class GameViewController: UIViewController {
     // MARK: outlets
     @IBOutlet var cardButtons: [UIButton]!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var foundSetsLabel: UILabel!
     @IBOutlet weak var numberOfSetsOnBoardLabel: UILabel!
-    @IBOutlet weak var addThreeCardsButton: GameButton!
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBAction func touchCardButton(_ sender: UIButton) {
@@ -36,12 +34,6 @@ class GameViewController: UIViewController {
         game.chooseCard(atIndex: index)
         updateViewFromModel()
     }
-    
-//    @IBAction func touchAddThreeCardsButton(_ sender: UIButton) {
-//        impact.impactOccurred() // give haptic feedback to the app user
-//        game.cheatByAddingThreeExtraCards()
-//        updateViewFromModel()
-//    }
     
     @IBAction func touchEndGameButton(_ sender: UIButton) {
         impact.impactOccurred() // give haptic feedback to the app user
@@ -79,8 +71,6 @@ class GameViewController: UIViewController {
         checkGameIsOver()
         updateTimeLabel()
         updateCardButtonsFromModel()
-//        updateAddThreeCardsButtonFromModel()
-//        updateFoundSetsLabel()
         updateScoreLabel()
         udateNumberOfSetsOnBoardLabel()
         
@@ -150,43 +140,25 @@ class GameViewController: UIViewController {
         for index in cardButtons.indices {
             let button = cardButtons[index] as! CardButton
             
-            if game.cardsOnBoard.indices.contains(index) {
-                let card = game.cardsOnBoard[index]
-                let color = colors[card.color.index]
-                    .withAlphaComponent(shadings[card.shading.index])
+            let card = game.cardsOnBoard[index]
+            let color = colors[card.color.index]
+                .withAlphaComponent(shadings[card.shading.index])
 
-                button.show(with: NSMutableAttributedString(
-                    string: String(
-                        repeating: symbols[card.symbol.index],
-                        count: card.number.rawValue),
-                        attributes: [
-                            .foregroundColor: color,
-                            .strokeWidth: -10.0,
-                            .strokeColor: colors[card.color.index]
-                        ]
-                    )
+            button.show(with: NSMutableAttributedString(
+                string: String(
+                    repeating: symbols[card.symbol.index],
+                    count: card.number.rawValue),
+                    attributes: [
+                        .foregroundColor: color,
+                        .strokeWidth: -10.0,
+                        .strokeColor: colors[card.color.index]
+                    ]
                 )
+            )
                 
-                button.setSelectedState(with: card.isSelected)
-                
-            } else {
-                button.hide()
-            }
+            button.setSelectedState(with: card.isSelected)
         }
     }
-    
-//    private func updateAddThreeCardsButtonFromModel() {
-//        addThreeCardsButton?.setTitle("+3 kaarten (nog \(game.deck.count))", for: .normal)
-//        if game.cardsOnBoard.count == game.maxNumberOfAllowedCardsOnBoard || game.deck.count == 0 {
-//            addThreeCardsButton?.disable()
-//        } else {
-//            addThreeCardsButton?.enable()
-//        }
-//    }
-    
-//    private func updateFoundSetsLabel() {
-//        foundSetsLabel.text = "Sets: \(game.foundSets)"
-//    }
     
     @objc private func updateTimeLabel() {
         game.timer.updateRunningTime()
@@ -199,6 +171,14 @@ class GameViewController: UIViewController {
     }
     
     private func udateNumberOfSetsOnBoardLabel() {
-//        numberOfSetsOnBoardLabel.text = "ER ZIJN \(game.numberOfSetsOnBoard) MOGELIJKE COMBINATIES"
+        let partOne = NSMutableAttributedString(string: "ER ZIJN ")
+        let partTwo  = NSMutableAttributedString(string: "\(game.numberOfSetsOnBoard)", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
+        let partThree = NSMutableAttributedString(string: " MOGELIJKE COMBINATIES")
+        
+        let attributedLabelText = partOne
+        attributedLabelText.append(partTwo)
+        attributedLabelText.append(partThree)
+
+        numberOfSetsOnBoardLabel.attributedText = attributedLabelText
     }
 }
