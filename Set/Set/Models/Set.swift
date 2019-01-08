@@ -109,15 +109,15 @@ struct Set {
         }
     }
     
-    mutating func cheatByAddingThreeExtraCards() {
-        guard cardsOnBoard.count <= maxNumberOfAllowedCardsOnBoard else { return }
-        
-        if numberOfSetsOnBoard > numberOfSetsOnBoardAllowedForCheating {
-            scoreBoard.addCheat()
-        }
-        
-        addCardsOnBoard(numberOfCardsInSet)
-    }
+//    mutating func cheatByAddingThreeExtraCards() {
+//        guard cardsOnBoard.count <= maxNumberOfAllowedCardsOnBoard else { return }
+//        
+//        if numberOfSetsOnBoard > numberOfSetsOnBoardAllowedForCheating {
+//            scoreBoard.addCheat()
+//        }
+//        
+//        addCardsOnBoard(numberOfCardsInSet)
+//    }
     
     // MARK: private interface
 

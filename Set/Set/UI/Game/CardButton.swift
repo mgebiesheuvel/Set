@@ -13,19 +13,25 @@ class CardButton: UIButton {
     // MARK: defaults
     private let cornerRadius: CGFloat = 5.0
     private let borderWidth: CGFloat = 3.0
-    private let transparentColor: CGColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
+    private let transparentColor: CGColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0)
     private let inSelectionBorderColor: CGColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    private let cardFaceColor: CGColor = #colorLiteral(red: 0.8786787987, green: 0.8786787987, blue: 0.8786787987, alpha: 1)
+
+    private let cardFaceColor: UIColor = #colorLiteral(red: 0.9647058824, green: 0.9647058824, blue: 0.9647058824, alpha: 1) // 246 246 246
+    private let borderColor: UIColor = #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 1) // 230 230 230
     
     // MARK: properties
     private var inSelection: Bool = false
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        self.layer.cornerRadius = cornerRadius
-        self.layer.borderWidth = borderWidth
-        self.layer.borderColor = inSelection ? inSelectionBorderColor : transparentColor
-        self.clipsToBounds = true
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        layer.backgroundColor = cardFaceColor.cgColor
+        layer.borderColor = borderColor.cgColor
+        layer.cornerRadius = frame.height / 2
+        layer.shadowColor = borderColor.cgColor
+        layer.shadowRadius = 10
+        layer.shadowOpacity = 1.0
+        layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     
     // MARK: public interface
@@ -38,7 +44,7 @@ class CardButton: UIButton {
     
     func show(with cardFace: NSMutableAttributedString) {
         self.setAttributedTitle(cardFace, for: UIControl.State.normal)
-        self.backgroundColor = UIColor(cgColor: cardFaceColor)
+        //self.backgroundColor = cardFaceColor
     }
     
     func setSelectedState(with state: Bool) {

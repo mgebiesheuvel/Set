@@ -37,11 +37,11 @@ class GameViewController: UIViewController {
         updateViewFromModel()
     }
     
-    @IBAction func touchAddThreeCardsButton(_ sender: UIButton) {
-        impact.impactOccurred() // give haptic feedback to the app user
-        game.cheatByAddingThreeExtraCards()
-        updateViewFromModel()
-    }
+//    @IBAction func touchAddThreeCardsButton(_ sender: UIButton) {
+//        impact.impactOccurred() // give haptic feedback to the app user
+//        game.cheatByAddingThreeExtraCards()
+//        updateViewFromModel()
+//    }
     
     @IBAction func touchEndGameButton(_ sender: UIButton) {
         impact.impactOccurred() // give haptic feedback to the app user
@@ -79,8 +79,8 @@ class GameViewController: UIViewController {
         checkGameIsOver()
         updateTimeLabel()
         updateCardButtonsFromModel()
-        updateAddThreeCardsButtonFromModel()
-        updateFoundSetsLabel()
+//        updateAddThreeCardsButtonFromModel()
+//        updateFoundSetsLabel()
         updateScoreLabel()
         udateNumberOfSetsOnBoardLabel()
         
@@ -175,30 +175,30 @@ class GameViewController: UIViewController {
         }
     }
     
-    private func updateAddThreeCardsButtonFromModel() {
-        addThreeCardsButton?.setTitle("+3 kaarten (nog \(game.deck.count))", for: .normal)
-        if game.cardsOnBoard.count == game.maxNumberOfAllowedCardsOnBoard || game.deck.count == 0 {
-            addThreeCardsButton?.disable()
-        } else {
-            addThreeCardsButton?.enable()
-        }
-    }
+//    private func updateAddThreeCardsButtonFromModel() {
+//        addThreeCardsButton?.setTitle("+3 kaarten (nog \(game.deck.count))", for: .normal)
+//        if game.cardsOnBoard.count == game.maxNumberOfAllowedCardsOnBoard || game.deck.count == 0 {
+//            addThreeCardsButton?.disable()
+//        } else {
+//            addThreeCardsButton?.enable()
+//        }
+//    }
     
-    private func updateFoundSetsLabel() {
-        foundSetsLabel.text = "Sets: \(game.foundSets)"
-    }
+//    private func updateFoundSetsLabel() {
+//        foundSetsLabel.text = "Sets: \(game.foundSets)"
+//    }
     
     @objc private func updateTimeLabel() {
         game.timer.updateRunningTime()
         let formattedTime = DateTime.formatTimeIntoString(game.timer.runningTime)
-        timeLabel.text = "Tijd: \(formattedTime)"
+        timeLabel.text = "\(formattedTime)"
     }
     
     private func updateScoreLabel() {
-        scoreLabel.text = "Punten: \(game.scoreBoard.score)"
+        scoreLabel.text = "\(game.scoreBoard.score)"
     }
     
     private func udateNumberOfSetsOnBoardLabel() {
-        numberOfSetsOnBoardLabel.text = "Mogelijke sets: \(game.numberOfSetsOnBoard)"
+//        numberOfSetsOnBoardLabel.text = "ER ZIJN \(game.numberOfSetsOnBoard) MOGELIJKE COMBINATIES"
     }
 }
