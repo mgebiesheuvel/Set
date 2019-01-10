@@ -72,7 +72,6 @@ class GameViewController: UIViewController {
         updateCardButtonsFromModel()
         updateScoreLabel()
         udateNumberOfSetsOnBoardLabel()
-        
     }
     
     func startTimer() {

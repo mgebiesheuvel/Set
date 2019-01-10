@@ -100,12 +100,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9B62137D21750A7C008679B2 /* UI */ = {
+		9B62137D21750A7C008679B2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				9B94737521D50C1D002E5959 /* Game */,
 			);
-			path = UI;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		9B62138021752443008679B2 /* Extensions */ = {
@@ -208,7 +208,7 @@
 				9BECB3F2216CE45800B70814 /* Supporting Files */,
 				9BEA13FD2194FE3A0066BBF7 /* Controllers */,
 				9BECB3E4216CE43B00B70814 /* Main.storyboard */,
-				9B62137D21750A7C008679B2 /* UI */,
+				9B62137D21750A7C008679B2 /* Views */,
 				9BEA13F72194E1F40066BBF7 /* Services */,
 				9BEA13F62194E1EC0066BBF7 /* Libs */,
 			);
