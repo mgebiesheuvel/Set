@@ -69,7 +69,6 @@ class GameViewController: UIViewController {
     private func updateViewFromModel() {
         saveGame()
         checkGameIsOver()
-        updateTimeLabel()
         updateCardButtonsFromModel()
         updateScoreLabel()
         udateNumberOfSetsOnBoardLabel()
