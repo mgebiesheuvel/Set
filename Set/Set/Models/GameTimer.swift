@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SetTimer {
+struct GameTimer {
     private(set) var runningTime = 0
     private(set) var setStartTime = 0
     
