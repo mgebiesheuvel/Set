@@ -7,28 +7,42 @@
 //
 
 import Foundation
+import Disk
 
 struct GameService {
     // MARK: properties
     private let fileName = "game.json"
-    private let directory = Storage.Directory.documents
+    private let directory = Disk.Directory.documents
     
     
     // MARK: public interface
     func getGame() -> SavedGame? {
-        guard Storage.fileExists(fileName, in: directory) else {
+        guard Disk.exists(fileName, in: directory) else {
             print("File \(fileName) in directory \(directory) does not exists.")
             return nil
         }
         
-        return Storage.retrieve(fileName, from: directory, as: SavedGame.self)
+        do {
+            return try Disk.retrieve(fileName, from: directory, as: SavedGame.self)
+        } catch {
+            print("An error occured while fetching a saved game from disk: \(error)")
+        }
+        return nil
     }
     
     func store(game: SavedGame) {
-        Storage.store(game, to: directory, as: fileName)
+        do {
+            try Disk.save(game, to: directory, as: fileName)
+        } catch {
+            print("An error occured while saving a game to disk: \(error)")
+        }
     }
     
     func clear() {
-        Storage.remove(fileName, from: directory)
+        do {
+            try Disk.remove(fileName, from: directory)
+        } catch {
+            print("An error occured while removing a saved game from disk: \(error)")
+        }
     }
 }

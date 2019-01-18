@@ -7,32 +7,49 @@
 //
 
 import Foundation
+import Disk
 
 struct ScoreService {
     // MARK: properties
     private let fileName = "score.json"
-    private let directory = Storage.Directory.documents
+    private let directory = Disk.Directory.documents
     
     
     // MARK: public interface
     func getAllScores() -> [Score] {
-        guard Storage.fileExists(fileName, in: directory) else {
+        guard Disk.exists(fileName, in: directory) else {
             print("File \(fileName) in directory \(directory) does not exists.")
-            return []
+            return [Score]()
         }
         
-        return Storage.retrieve(fileName, from: directory, as: [Score].self)
+        do {
+            return try Disk.retrieve(fileName, from: directory, as: [Score].self)
+        } catch {
+            print("An error occured while fetching scores from disk: \(error)")
+        }
+        
+        return [Score]()
     }
     
     func store(score: Score) {
         var scores = getAllScores()
         scores.append(score)
-        Storage.store(scores.sorted(by: { $0.score > $1.score }), to: directory, as: fileName)
+        
+        do {
+            try Disk.save(scores.sorted(by: { $0.score > $1.score }), to: directory, as: fileName)
+        } catch {
+            print("An error occured while saving a score to disk: \(error)")
+        }
     }
     
     func remove(at index: Int) {
         var scores = getAllScores()
         scores.remove(at: index)
-        Storage.store(scores.sorted(by: { $0.score > $1.score }), to: directory, as: fileName)
+        
+        do {
+            try Disk.save(scores.sorted(by: { $0.score > $1.score }), to: directory, as: fileName)
+        } catch {
+            print("An error occured while removing a score from disk: \(error)")
+        }
     }
 }
