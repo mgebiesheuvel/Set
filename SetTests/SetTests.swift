@@ -16,17 +16,17 @@ class SetTests: XCTestCase {
         XCTAssertEqual(sut.cardsOnBoard.count, 12)
     }
     
-    func testAddCardsOnBoard_add3Cards_shouldBe15CardsOnBoard() {
+    func testAddCardsOnBoard_add12Cards_shouldBeAtLeastOneSetOnBoard() {
         var sut = Set()
-        sut.addCardsOnBoard(3)
+        sut.addCardsOnBoard(amount: 12)
         
-        XCTAssertEqual(sut.cardsOnBoard.count, 15)
+        XCTAssertTrue(sut.numberOfSetsOnBoard > 0)
     }
     
-    func testAddCardsOnBoard_add50Cards_shouldBe24CardsOnBoard() {
+    func testAddCardsOnBoard_add50Cards_shouldBe0CardsOnBoard() {
         var sut = Set()
-        sut.addCardsOnBoard(50)
+        sut.addCardsOnBoard(amount: 50)
         
-        XCTAssertEqual(sut.cardsOnBoard.count, 24)
+        XCTAssertEqual(sut.cardsOnBoard.count, 12)
     }
 }

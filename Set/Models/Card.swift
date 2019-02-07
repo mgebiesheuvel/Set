@@ -8,9 +8,15 @@
 
 import Foundation
 
-class Card: Codable {
+class Card: Codable, Hashable {
+    
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+    
     
     // MARK: properties
+    var identifier: Int
     var color: CardColor
     var number: CardNumber
     var shading: CardShading
@@ -18,8 +24,14 @@ class Card: Codable {
     
     var isSelected: Bool = false
     var isMatched: Bool = false
+    var inHint: Bool = false
     
-    init (color: CardColor, number: CardNumber, shading: CardShading, symbol: CardSymbol) {
+    var hashValue: Int {
+        return identifier.hashValue
+    }
+    
+    init (identifier: Int, color: CardColor, number: CardNumber, shading: CardShading, symbol: CardSymbol) {
+        self.identifier = identifier
         self.color = color
         self.number = number
         self.shading = shading
@@ -38,6 +50,10 @@ class Card: Codable {
     func match () {
         isMatched = true
         deselect()
+    }
+    
+    func addToHint() {
+        inHint = true
     }
     
     // MARK: card properties

@@ -11,8 +11,7 @@ import Foundation
 struct Set {
     
     // MARK: defaults
-    internal let maxNumberOfAllowedCardsOnBoard = 24
-    internal let numberOfCardsAtGameStart = 12
+    internal let maxNumberOfAllowedCardsOnBoard = 12
     internal let numberOfCardsInSet = 3
     internal let numberOfSetsOnBoardAllowedForCheating = 1
    
@@ -28,48 +27,62 @@ struct Set {
     var cardsOnBoard: [Card] { return board.filter { !$0.isMatched }}
     var cardsInSelection: [Card] { return board.filter { $0.isSelected }}
     var foundSets: Int { return (board.filter { $0.isMatched }.count / numberOfCardsInSet)}
-    var numberOfSetsOnBoard: Int {
-        var result = [[Card]]()
-        
-        if cardsOnBoard.count >= numberOfCardsInSet {
-            for i in 0..<cardsOnBoard.count {
-                for j in (i+1)..<cardsOnBoard.count {
-                    for k in (j+1)..<cardsOnBoard.count {
-                        let cards = [cardsOnBoard[i], cardsOnBoard[j], cardsOnBoard[k]]
-                        
-                        if isSet(cards) {
-                            result.append(cards)
-                        }
-                    }
-                }
-            }
-        }
-        return result.count
-    }
+    var numberOfSetsOnBoard: Int { return getSetsOnBoard().count }
+    var cardsInHint: [Card] { return board.filter { $0.inHint && !$0.isMatched }}
+    var numberOfShownHintCard = 0
     
     init () {
+        var identifier: Int = 0
         for color in Card.CardColor.allValues {
             for shading in Card.CardShading.allValues {
                 for symbol in Card.CardSymbol.allValues {
                     for number in Card.CardNumber.allValues {
-                        deck.append(Card(color: color, number: number, shading: shading, symbol: symbol))
+                        deck.append(Card(identifier: identifier, color: color, number: number, shading: shading, symbol: symbol))
+                        identifier += 1
                     }
                 }
             }
         }
         
         deck.shuffle()
-        addCardsOnBoard(numberOfCardsAtGameStart)
+        addCardsOnBoard(amount: maxNumberOfAllowedCardsOnBoard)
     }
     
-    mutating func addCardsOnBoard(_ amount: Int) {
-        let numberOfAvailablePositions = maxNumberOfAllowedCardsOnBoard - cardsOnBoard.count
-        let numberOfCardsToBeSwapped = numberOfAvailablePositions > amount ? amount : numberOfAvailablePositions
+    mutating func addCardsOnBoard(amount: Int) {
+        guard amount <= maxNumberOfAllowedCardsOnBoard else { return }
+        var tempBoard = board
         
-        for index in numberOfCardsToBeSwapped.reversed() {
+        // add the amount of card
+        for index in amount.reversed() {
             if deck.indices.contains(index) {
-                board.append(deck.remove(at: index))
+                tempBoard.append(deck.remove(at: index))
             }
+        }
+        
+        board = tempBoard
+        
+        // board must at least contain one set
+        if numberOfSetsOnBoard == 0 {
+            board.removeLast(numberOfCardsInSet) // remove last three
+            deck.shuffle()
+            addCardsOnBoard(amount: numberOfCardsInSet) // try to add three new cards
+        }
+    }
+    
+    mutating func giveHint() {
+        if cardsInHint.count == 0 {
+            if let firstHintSerie: [Card] = getSetsOnBoard().first {
+                for card: Card in firstHintSerie {
+                    card.addToHint()
+                }
+            }
+        }
+        print(cardsInHint)
+        cardsInHint[numberOfShownHintCard].select()
+        numberOfShownHintCard += 1
+        
+        if numberOfShownHintCard == 3 {
+            numberOfShownHintCard = 0
         }
     }
     
@@ -99,8 +112,8 @@ struct Set {
                     
                     scoreBoard.calcScore(timeNeeded: timer.getTimeNeeded())
                     
-                    if currentNumberOfCards <= numberOfCardsAtGameStart {
-                         addCardsOnBoard(numberOfCardsInSet) // replace cards in valid set by new ones
+                    if currentNumberOfCards <= maxNumberOfAllowedCardsOnBoard {
+                        addCardsOnBoard(amount: numberOfCardsInSet) // replace cards in valid set by new ones
                     }
                 } else {
                     scoreBoard.addMismatch()
@@ -109,18 +122,25 @@ struct Set {
         }
     }
     
-//    mutating func cheatByAddingThreeExtraCards() {
-//        guard cardsOnBoard.count <= maxNumberOfAllowedCardsOnBoard else { return }
-//        
-//        if numberOfSetsOnBoard > numberOfSetsOnBoardAllowedForCheating {
-//            scoreBoard.addCheat()
-//        }
-//        
-//        addCardsOnBoard(numberOfCardsInSet)
-//    }
-    
     // MARK: private interface
-
+    private func getSetsOnBoard () -> [[Card]] {
+        var result = [[Card]]()
+        
+        if cardsOnBoard.count >= numberOfCardsInSet {
+            for i in 0..<cardsOnBoard.count {
+                for j in (i+1)..<cardsOnBoard.count {
+                    for k in (j+1)..<cardsOnBoard.count {
+                        let cards = [cardsOnBoard[i], cardsOnBoard[j], cardsOnBoard[k]]
+                        
+                        if isSet(cards) {
+                            result.append(cards)
+                        }
+                    }
+                }
+            }
+        }
+        return result
+    }
     
     private func isSet(_ cards: [Card]) -> Bool {
         guard cards.count == numberOfCardsInSet else { return false }

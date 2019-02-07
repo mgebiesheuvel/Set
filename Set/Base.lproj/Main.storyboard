@@ -439,6 +439,9 @@
                                                                         <real key="value" value="18"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="touchHintButton:" destination="5Qe-4R-Wz1" eventType="touchUpInside" id="ajO-QJ-uLi"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>

@@ -35,6 +35,11 @@ class GameViewController: UIViewController {
         updateViewFromModel()
     }
     
+    @IBAction func touchHintButton(_ sender: UIButton) {
+        impact.impactOccurred() // give haptic feedback to the app user
+        game.giveHint()
+        updateViewFromModel()
+    }
     @IBAction func touchEndGameButton(_ sender: UIButton) {
         impact.impactOccurred() // give haptic feedback to the app user
         timer.invalidate()
